@@ -2,5 +2,5 @@
 
 ## Try it out
 ```
-npm run dev
+npm run watch-server
 ```
