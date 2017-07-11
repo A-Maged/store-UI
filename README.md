@@ -1,4 +1,4 @@
-# React Hot Loader Minimal Boilerplate
+# React app that uses the [store-API](https://github.com/A-Maged/store-API) as a back-end
 
 Bare minimum needed to have [React Hot Loader](https://github.com/gaearon/react-hot-loader) working with [webpack-dev-server](https://github.com/webpack/webpack-dev-server) and [Babel latest](https://babeljs.io/docs/plugins/preset-latest/) plugin
 
