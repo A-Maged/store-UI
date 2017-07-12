@@ -38,8 +38,14 @@ const CmRouter = () => (
             <Switch>
                 <Route exact path="/" component={Stores}/>
                 <Route path="/add" component={AddStore}/>
-                <Route path="/singleStore/:id" component={SingleStore}/>
+                <Route path="/singleStore/:slug" component={SingleStore}/>
                 <Route path="/test" component={Test}/>
+
+                <Route
+                    pattern="/update/:slug"
+                    render={(props) => ( <AddStore {...props} custom="this is a custom prop"/> ) }
+                />
+
 
                 {/*
                     a last route to catch 404

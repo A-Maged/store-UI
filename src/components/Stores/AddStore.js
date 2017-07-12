@@ -12,6 +12,7 @@ class AddStore extends Component {
             fireRedirect: false,
             name: '',
             description: '',
+            slug: '',
             tags: [],
             serverMsg: {}
         }
@@ -64,11 +65,14 @@ class AddStore extends Component {
         
         return (
             <div>
+
+                {console.log(this.props)}
+                {this.props.custom}
                 <h1>add/edit store </h1>
 
                 <form onSubmit={ (e) => this.handleSubmit(e) } method="post">
                     <div>
-                        <input onChange={e=>{ this.setState({name: e.target.value }) } } type="text" name="name" placeholder="name" />
+                        <input onChange={e=>{ this.setState({name: e.target.value }) } }  value={this.state.name}   type="text" name="name" placeholder="name" />
                     </div>
                   
                     <textarea onChange={e=>{ this.setState({description: e.target.value }) } }  name="description" placeholder="description"></textarea>

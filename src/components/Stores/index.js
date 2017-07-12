@@ -55,11 +55,17 @@ class Stores extends Component {
      
         return self.state.stores.map(function(store) {
             return (
-                <li key={store.name}>
+                <li key={store.name} className="single-store">
 
                     <Link to={"/singlestore/" + store.slug}>
                         {store.name}                
                     </Link>
+                    
+
+                    <Link to={"/update/" + store.slug}>
+                        update                
+                    </Link>
+                    
                 </li>)
         });
     }
