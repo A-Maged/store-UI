@@ -14,6 +14,7 @@ class SingleStore extends Component {
 
 
     componentDidMount(){
+        
         var self = this
 
         axios.get(`http://127.0.0.1:3000/api/v1/stores/show/${this.props.match.params.slug}`)

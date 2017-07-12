@@ -13,8 +13,7 @@ class AddStore extends Component {
             name: '',
             description: '',
             slug: '',
-            tags: [],
-            serverMsg: {}
+            serverMsg: {},
         }
 
     }
@@ -25,39 +24,59 @@ class AddStore extends Component {
 	componentDidMount(){
 
         var self = this
-
+        
 		this.updateState = (stateObj) => {
 				this.setState(stateObj)
 		}        
 
+        // populate store info in the form
+        if(this.props.title == "Edit" ){
+            axios.get(`http://127.0.0.1:3000/api/v1/stores/show/${this.props.match.params.slug}`)
+            .then(function (response) {
+                self.setState({ 
+                    name: response.data.name,
+                    description: response.data.description,
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        }
+
+
 
         self.handleSubmit = (e) => {
     		e.preventDefault();
-
 			var self = this;
-			// submit data
-			axios.post('http://127.0.0.1:3000/api/v1/stores/add',{
-				name: this.state.name,
-				description: this.state.description,
-				tags: this.state.tags
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-			
+
+            if(this.props.title == "Add"){
+                // submit data
+                axios.post('http://127.0.0.1:3000/api/v1/stores/add',{
+                    name: this.state.name,
+                    description: this.state.description,
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            }
+            else if(this.props.title == "Edit"){
+                // submit data
+                axios.post(`http://127.0.0.1:3000/api/v1/stores/update/${this.props.match.params.slug}`,{
+                    name: this.state.name,
+                    description: this.state.description,
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+            }
 			this.updateState({ fireRedirect: true })
 			
 		}
 
-	}
-
-
-    updateTags(e){
-
-        var tempArray = this.state.tags
-        tempArray.push(e.target.value)
-        this.setState({tags: tempArray }) 
-    }
+        
+    } // end  componentDidMount
 
 
 
@@ -66,32 +85,30 @@ class AddStore extends Component {
         return (
             <div>
 
+
                 {console.log(this.props)}
-                {this.props.custom}
-                <h1>add/edit store </h1>
+
+
+                <h1>{this.props.title} store</h1>
 
                 <form onSubmit={ (e) => this.handleSubmit(e) } method="post">
                     <div>
-                        <input onChange={e=>{ this.setState({name: e.target.value }) } }  value={this.state.name}   type="text" name="name" placeholder="name" />
+                        <input  onChange={e=>{ this.setState({name: e.target.value }) } }  
+                                value={this.state.name}   
+                                type="text" name="name" placeholder="name" />
                     </div>
                   
-                    <textarea onChange={e=>{ this.setState({description: e.target.value }) } }  name="description" placeholder="description"></textarea>
+                    <textarea onChange={e=>{ this.setState({description: e.target.value }) } }  
+                              value={this.state.description} 
+                              name="description" placeholder="description"></textarea>
 
-                    <div>
-                        <input  onChange={ e => this.updateTags(e) }  type="checkbox" name="tags" value="tech" id="tech" />
-                        <label  htmlFor="tech">tech</label>
-
-                        <input onChange={ e => this.updateTags(e) } type="checkbox" name="tags" value="sports" id="sports" />
-                        <label htmlFor="sports">sports</label>
-
-                        <input onChange={ e => this.updateTags(e) } type="checkbox" name="tags" value="node" id="node" />
-                        <label htmlFor="node">node</label>
-                    </div>
-                
+ 
                     <button>add</button>
                 </form>
 
 
+ 
+                {/* redirect after submission */}
                 { this.state.fireRedirect && ( <Redirect to={'/'}/> )  }
 
 				{ ()=>{

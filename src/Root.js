@@ -11,10 +11,10 @@ import {
 
 
 
-import Stores from '../components/Stores/index.js'
-import SingleStore from '../components/Stores/SingleStore.js'
-import AddStore from '../components/Stores/AddStore.js'
-import Test from '../components/Stores/Test.js'
+import Stores from './components/Stores/index.js'
+import SingleStore from './components/Stores/SingleStore.js'
+import AddStore from './components/Stores/AddStore.js'
+import Test from './components/Stores/Test.js'
 
 
 const NoMatch = ({ location }) => (
@@ -30,22 +30,25 @@ const CmRouter = () => (
             <ul>
                 <li><Link to="/">all stores</Link></li>
                 <li><Link to="/add">add new store</Link></li>
-                <li><Link to="/test">test</Link></li>
             </ul>
 
             <hr/>
 
             <Switch>
                 <Route exact path="/" component={Stores}/>
-                <Route path="/add" component={AddStore}/>
                 <Route path="/singleStore/:slug" component={SingleStore}/>
-                <Route path="/test" component={Test}/>
 
                 <Route
-                    pattern="/update/:slug"
-                    render={(props) => ( <AddStore {...props} custom="this is a custom prop"/> ) }
+                    path="/update/:slug"
+                    render={(props) => ( <AddStore {...props} title="Edit"/> ) }
                 />
 
+                <Route
+                    path="/add"
+                    render={(props) => ( <AddStore {...props} title="Add"/> ) }
+                />
+
+          
 
                 {/*
                     a last route to catch 404
