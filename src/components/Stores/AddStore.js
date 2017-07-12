@@ -25,10 +25,6 @@ class AddStore extends Component {
 
         var self = this
         
-		self.updateState = (stateObj) => {
-				self.setState(stateObj)
-		}        
-
         // populate store info in the form
         if(this.props.title == "Edit" ){
             axios.get(`http://127.0.0.1:3000/api/v1/stores/show/${this.props.match.params.slug}`)
