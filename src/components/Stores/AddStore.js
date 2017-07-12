@@ -25,8 +25,8 @@ class AddStore extends Component {
 
         var self = this
         
-		this.updateState = (stateObj) => {
-				this.setState(stateObj)
+		self.updateState = (stateObj) => {
+				self.setState(stateObj)
 		}        
 
         // populate store info in the form
@@ -71,7 +71,7 @@ class AddStore extends Component {
                 });
 
             }
-			this.updateState({ fireRedirect: true })
+			this.setState({ fireRedirect: true })
 			
 		}
 
@@ -109,7 +109,7 @@ class AddStore extends Component {
 
  
                 {/* redirect after submission */}
-                { this.state.fireRedirect && ( <Redirect to={'/'}/> )  }
+                { this.state.fireRedirect && ( <Redirect to={`/`}/> )  }
 
 				{ ()=>{
 					if(this.state.fireRedirect){
