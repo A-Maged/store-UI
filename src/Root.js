@@ -36,6 +36,7 @@ const CmRouter = () => (
 
             <Switch>
                 <Route exact path="/" component={Stores}/>
+            
                 <Route path="/singleStore/:slug" component={SingleStore}/>
 
                 <Route
