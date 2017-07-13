@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start":"node node-server.js",
     "dev": "webpack-dev-server --hot --history-api-fallback --open",
-    "watch-server": "supervisor ./react-server.js",
+    "watch-server": "supervisor ./node-server.js",
     "webpack": "webpack"
   },
   "keywords": [],
