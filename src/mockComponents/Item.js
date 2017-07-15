@@ -39,6 +39,7 @@ class Item extends Component {
 
 		this.renderGallaryImgs = this.renderGallaryImgs.bind(this);
 		this.renderReviews = this.renderReviews.bind(this);
+		this.handleOrder = this.handleOrder.bind(this);
 	}
 	
 
@@ -61,16 +62,21 @@ class Item extends Component {
 					return(
 						<div key={shortid.generate()}  className="review">
 							<strong className="username">
-								{review.username}
+								username:   {review.username}
 							</strong>
 
-							<p className="data">{review.data}</p>
-							<p className="stars">{review.stars}</p>					
+							<p className="data">review:   {review.data}</p>
+							<p className="stars">stars:   {review.stars}</p>					
 						</div>
 					)
 				})}
 			</div>
 		)
+	}
+
+
+	handleOrder(event){
+		console.log('handleOrder called')
 	}
 
 	render() {
@@ -84,6 +90,8 @@ class Item extends Component {
 				<p>{item.price}</p>		
 				{this.renderGallaryImgs()}	
 				{this.renderReviews()}	
+
+				<button onClick={event => this.handleOrder(event)}>BUY/RESERVE</button>
 			</div>
 		);
 	}
