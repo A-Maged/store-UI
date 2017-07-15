@@ -9,9 +9,7 @@ import SingleStore from './SingleStore';
 import Item from './Item';
 
 const NoMatch = ({ location }) => (
-	<div>
-		<h3>No match for <code>{location.pathname}</code></h3>
-	</div>
+	<h3>No match for <code>{location.pathname}</code></h3>
 )
 
 
@@ -19,11 +17,8 @@ const CmRouter = () => (
 	<Router>
 		<Switch>
 			<Route exact path="/" component={Stores}/>
-
 			<Route path="/singleStore/:storeslug/:itemId" component={Item}/>
-
 			<Route path="/singleStore/:storeslug" component={SingleStore}/>
-
 			<Route component={NoMatch}/>            
 		</Switch>
 	</Router>
@@ -32,7 +27,7 @@ const CmRouter = () => (
 
 
 const Root = () => (
-  <CmRouter></CmRouter>
+  <CmRouter />
 )
 
 export default Root
