@@ -17,6 +17,7 @@ class SingleStore extends Component {
 				longitude: 	40.6776989,
 				latitude: 	-73.95153
 			},
+			featuredImg:	'http://static4.businessinsider.com/image/563cde04bd86effb5b8bcd49-2392-1794/rtr3er24.jpg',
 			coverImgLink: 	'http://static4.businessinsider.com/image/563cde04bd86effb5b8bcd49-2392-1794/rtr3er24.jpg',
 			catagories: 	['grocery','food'],
 			hasDelivery: 	true,
@@ -44,6 +45,7 @@ class SingleStore extends Component {
 			]
 		}
 
+		// this bindings
 		this.renderCatagories = this.renderCatagories.bind(this);
 		this.renderdeliveryCities = this.renderdeliveryCities.bind(this);
 		this.renderItems = this.renderItems.bind(this);

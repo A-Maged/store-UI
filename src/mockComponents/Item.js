@@ -37,6 +37,7 @@ class Item extends Component {
 
 		}
 
+		// this bindings
 		this.renderGallaryImgs = this.renderGallaryImgs.bind(this);
 		this.renderReviews = this.renderReviews.bind(this);
 		this.handleOrder = this.handleOrder.bind(this);

@@ -12,12 +12,22 @@ const NoMatch = ({ location }) => (
 
 const CmRouter = () => (
 	<Router>
-		<Switch>
-			<Route exact path="/" component={Stores}/>
-			<Route path="/singleStore/:storeslug/:itemId" component={Item}/>
-			<Route path="/singleStore/:storeslug" component={SingleStore}/>
-			<Route component={NoMatch}/>            
-		</Switch>
+		<div>
+
+			<ul>
+				<li><Link to="/singleStore/cm_grocery">cm grocery</Link></li>
+			</ul>
+
+			<hr/>
+
+			<Switch>
+				<Route exact path="/" component={Stores}/>
+				<Route path="/singleStore/:storeslug/:itemId" component={Item}/>
+				<Route path="/singleStore/:storeslug" component={SingleStore}/>
+				<Route component={NoMatch}/>            
+			</Switch>
+			
+		</div>			
 	</Router>
 )
 
