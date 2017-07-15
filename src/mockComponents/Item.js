@@ -43,6 +43,7 @@ class Item extends Component {
 	}
 	
 
+
 	renderGallaryImgs(){
 		return(
 			<div className="gallary">
@@ -54,6 +55,8 @@ class Item extends Component {
 			</div>
 		)
 	}
+
+
 
 	renderReviews(){
 		return(
@@ -75,10 +78,13 @@ class Item extends Component {
 	}
 
 
+
 	handleOrder(event){
 		console.log('handleOrder called')
 	}
 
+
+	
 	render() {
 		var item = this.state;
 
