@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 
 const shortid = require('shortid');
 
@@ -19,11 +20,33 @@ class SingleStore extends Component {
 			coverImgLink: 	'http://static4.businessinsider.com/image/563cde04bd86effb5b8bcd49-2392-1794/rtr3er24.jpg',
 			catagories: 	['grocery','food'],
 			hasDelivery: 	true,
-			deliveryCities: ['Brooklyn', 'Queens']
+			deliveryCities: ['Brooklyn', 'Queens'],
+			items:[
+				{
+					id:				1,
+					name: 			'chicken1',
+					price : 		22,
+					featuredImg :	'http://wellnesshealthyfood.com/wp-content/uploads/2016/06/Frozen-chicken-jpg.jpg',					
+				},
+				{
+					id:				2,
+					name: 			'chicken2',
+					price : 		15,
+					featuredImg :	'http://wellnesshealthyfood.com/wp-content/uploads/2016/06/Frozen-chicken-jpg.jpg',					
+				},
+				{
+					id:				3,
+					name: 			'chicken3',
+					price : 		42,
+					featuredImg :	'http://wellnesshealthyfood.com/wp-content/uploads/2016/06/Frozen-chicken-jpg.jpg',					
+				}
+
+			]
 		}
 
 		this.renderCatagories = this.renderCatagories.bind(this);
 		this.renderdeliveryCities = this.renderdeliveryCities.bind(this);
+		this.renderItems = this.renderItems.bind(this);
 	}
 
 
@@ -61,6 +84,32 @@ class SingleStore extends Component {
 		}
 	}
 
+
+	renderItems(){
+		var self = this;
+		return(
+			<ul className="items-list">
+			{
+				this.state.items.map(function(item) {
+					return(
+						<div key={shortid.generate()} >
+							<img className="featured-img" src={item.featuredImg} alt=""/>
+
+							<p className="name">
+								<Link to={`/singleStore/${self.props.match.params.storeslug}/${item.id}`}>
+									{item.name}							
+								</Link>
+							</p>
+
+							<p className="price">{item.price}</p>						
+						</div>
+					)
+				})
+			}
+			</ul>
+		);
+	}
+
 	render() {
 		var store = this.state;
 
@@ -80,6 +129,7 @@ class SingleStore extends Component {
 				
 				{this.renderdeliveryCities()}
 
+				{this.renderItems()}
 
 			</div>
 		);
