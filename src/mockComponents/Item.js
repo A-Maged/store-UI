@@ -20,15 +20,17 @@ class Item extends Component {
 				'http://www.ua.all.biz/img/ua/catalog/10811697.jpg'
 			],
 			catagory: 	'food',
-			review:[ 
+			reviews:[ 
 				{
 					id:		1,
+					username: 'Cm',
 					data:	'this product is awsome',
 					stars: 	5
 				},
 				{
 					id:		2,
-					data:	'tasts like **** ,won\'t buy from here again',
+					username: 'Ts',
+					data:	'tasts like **** , won\'t buy from here again',
 					stars: 	0
 				}						
 			]
@@ -54,8 +56,19 @@ class Item extends Component {
 
 	renderReviews(){
 		return(
-			<div className="reviews">
+			<div className="reviews-list">
+				{this.state.reviews.map(function(review) {
+					return(
+						<div key={shortid.generate()}  className="review">
+							<strong className="username">
+								{review.username}
+							</strong>
 
+							<p className="data">{review.data}</p>
+							<p className="stars">{review.stars}</p>					
+						</div>
+					)
+				})}
 			</div>
 		)
 	}
@@ -69,7 +82,8 @@ class Item extends Component {
 				<img src={item.featuredImg} alt=""/>
 				<p>{item.description}</p>				
 				<p>{item.price}</p>		
-				{this.renderGallaryImgs()}		
+				{this.renderGallaryImgs()}	
+				{this.renderReviews()}	
 			</div>
 		);
 	}
