@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"node node-server.js",
+    "start": "node node-server.js",
     "dev": "webpack-dev-server --hot --history-api-fallback --open",
     "watch-server": "supervisor ./node-server.js",
     "webpack": "webpack"
@@ -15,7 +15,8 @@
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-router-dom": "^4.1.1"
+    "react-router-dom": "^4.1.1",
+    "shortid": "^2.2.8"
   },
   "devDependencies": {
     "axios": "^0.16.2",
