@@ -16,7 +16,7 @@ const NoMatch = ({ location }) => (
 
 
 const CmRouter = () => (
-  <Router>
+	<Router>
 		<Switch>
 			<Route exact path="/" component={Stores}/>
 
@@ -26,7 +26,7 @@ const CmRouter = () => (
 
 			<Route component={NoMatch}/>            
 		</Switch>
-    </Router>
+	</Router>
 )
 
 
