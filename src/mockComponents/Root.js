@@ -17,21 +17,15 @@ const NoMatch = ({ location }) => (
 
 const CmRouter = () => (
   <Router>
-        <div>
+		<Switch>
+			<Route exact path="/" component={Stores}/>
 
-            <hr/>
+			<Route path="/singleStore/:storeslug/:itemId" component={Item}/>
 
-            <Switch>
-                <Route exact path="/" component={Stores}/>
-            
-                <Route path="/singleStore/:storeslug/:itemId" component={Item}/>
-				
-				<Route path="/singleStore/:storeslug" component={SingleStore}/>
+			<Route path="/singleStore/:storeslug" component={SingleStore}/>
 
-				<Route component={NoMatch}/>            
-            </Switch>
-
-        </div>
+			<Route component={NoMatch}/>            
+		</Switch>
     </Router>
 )
 
