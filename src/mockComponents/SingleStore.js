@@ -93,8 +93,11 @@ class SingleStore extends Component {
 				this.state.items.map(function(item) {
 					return(
 						<div key={shortid.generate()} >
+		
+						<Link to={`/singleStore/${self.props.match.params.storeslug}/${item.id}`}>
 							<img className="featured-img" src={item.featuredImg} alt=""/>
-
+						</Link>
+							
 							<p className="name">
 								<Link to={`/singleStore/${self.props.match.params.storeslug}/${item.id}`}>
 									{item.name}							
