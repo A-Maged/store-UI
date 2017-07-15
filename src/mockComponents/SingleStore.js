@@ -26,20 +26,20 @@ class SingleStore extends Component {
 				{
 					id:				1,
 					name: 			'chicken1',
-					price : 		22,
+					price : 		42,
 					featuredImg :	'http://wellnesshealthyfood.com/wp-content/uploads/2016/06/Frozen-chicken-jpg.jpg',					
 				},
 				{
 					id:				2,
-					name: 			'chicken2',
-					price : 		15,
-					featuredImg :	'http://wellnesshealthyfood.com/wp-content/uploads/2016/06/Frozen-chicken-jpg.jpg',					
+					name: 			'Whole wheat bread',
+					price : 		25,
+					featuredImg :	'http://www.rdeliciouskitchen.com/wp-content/uploads/2015/08/bread.jpg',					
 				},
 				{
 					id:				3,
-					name: 			'chicken3',
-					price : 		42,
-					featuredImg :	'http://wellnesshealthyfood.com/wp-content/uploads/2016/06/Frozen-chicken-jpg.jpg',					
+					name: 			'Whole-grain cheerios cereals',
+					price : 		18,
+					featuredImg :	'https://guideimg.alibaba.com/images/shop/2015/09/29/90/general-mills-cereals-multi-grain-cheerios-cereal-box-peanut-butter-11.3-ounce-pack-of-3_10100090.jpeg',					
 				}
 
 			]
@@ -49,6 +49,7 @@ class SingleStore extends Component {
 		this.renderCatagories = this.renderCatagories.bind(this);
 		this.renderdeliveryCities = this.renderdeliveryCities.bind(this);
 		this.renderItems = this.renderItems.bind(this);
+		this.handleOrder = this.handleOrder.bind(this);		
 	}
 
 
@@ -87,14 +88,16 @@ class SingleStore extends Component {
 	}
 
 
+
 	renderItems(){
 		var self = this;
+
 		return(
 			<ul className="items-list">
 			{
 				this.state.items.map(function(item) {
 					return(
-						<div key={shortid.generate()} >
+						<div key={shortid.generate()} className="item">
 		
 						<Link to={`/singleStore/${self.props.match.params.storeslug}/${item.id}`}>
 							<img className="featured-img" src={item.featuredImg} alt=""/>
@@ -106,7 +109,8 @@ class SingleStore extends Component {
 								</Link>
 							</p>
 
-							<p className="price">{item.price}</p>						
+							<p className="price">{item.price}</p>
+							<button onClick={event => self.handleOrder(event) }>add to cart</button>						
 						</div>
 					)
 				})
@@ -114,6 +118,13 @@ class SingleStore extends Component {
 			</ul>
 		);
 	}
+
+
+	handleOrder(event){
+		console.log('handleOrder called')
+	}
+
+
 
 	render() {
 		var store = this.state;

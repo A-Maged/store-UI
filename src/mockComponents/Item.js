@@ -91,10 +91,10 @@ class Item extends Component {
 
 		return (
 			<div className="item">
-				<h2>{item.name}</h2>
+				<h2>name:  {item.name}</h2>
 				<img src={item.featuredImg} alt=""/>
-				<p>{item.description}</p>				
-				<p>{item.price}</p>		
+				<p>description:  {item.description}</p>				
+				<p>price:  {item.price}</p>		
 				{this.renderGallaryImgs()}	
 				{this.renderReviews()}	
 
