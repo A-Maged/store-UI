@@ -30,7 +30,7 @@ const CmRouter = () => (
             <ul>
                 <li><Link to="/">all stores</Link></li>
                 <li><Link to="/add">add new store</Link></li>
-            </ul>
+			</ul>
 
             <hr/>
 

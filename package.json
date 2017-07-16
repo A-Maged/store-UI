@@ -7,7 +7,7 @@
     "start": "node node-server.js",
     "dev": "webpack-dev-server --hot --history-api-fallback --open",
     "watch-server": "supervisor ./node-server.js",
-    "webpack": "webpack"
+    "watch-assets": "webpack --watch"
   },
   "keywords": [],
   "author": "",

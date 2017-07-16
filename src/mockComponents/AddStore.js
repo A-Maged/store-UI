@@ -29,6 +29,8 @@ class AddStore extends Component {
 			
         }
 
+
+		this.changeStoreState = this.changeStoreState.bind(this);
     }
 
 
@@ -38,50 +40,17 @@ class AddStore extends Component {
 
         var self = this
         
-        // populate store info in the form
-        if(this.props.title == "Edit" ){
-            axios.get(`http://127.0.0.1:3000/api/v1/stores/show/${this.props.match.params.slug}`)
-            .then(function (response) {
-                self.setState({ 
-                    name: response.data.name,
-                    description: response.data.description,
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-        }
-
-
-
         self.handleSubmit = (e) => {
     		e.preventDefault();
 			var self = this;
 
-            if(this.props.title == "Add"){
-                // submit data
-                axios.post('http://127.0.0.1:3000/api/v1/stores/add',{
-                    name: this.state.name,
-                    description: this.state.description,
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            }
-            else if(this.props.title == "Edit"){
-                // submit data
-                axios.post(`http://127.0.0.1:3000/api/v1/stores/update/${this.props.match.params.slug}`,{
-                    name: this.state.name,
-                    description: this.state.description,
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+			// submit data
+			axios.post('http://127.0.0.1:3000/api/v1/stores/add', self.store)
+			.catch(function (error) {
+				console.log(error);
+			});
 
-            }
 			this.setState({ fireRedirect: true })
-			
 		}
 
         
@@ -89,39 +58,43 @@ class AddStore extends Component {
 
 
 
+	changeStoreState(property, value){
+		console.log('change nested object dynamically')
+
+		// var tempStore = Object.assign( {}, this.state.store);
+
+		// tempStore[property] = value;
+
+		// this.setState({ store: tempStore });
+	}
+
     render() {
         var store = this.state.store;
 
 		return (
             <div>
-
-
-                {console.log(this.props)}
-
-
-                <h1>{this.props.title} store</h1>
-
-                <form onSubmit={ (e) => this.handleSubmit(e) } method="post">
+				<h2>add a store</h2>
+				{console.log(store)}
+				<form onSubmit={ (e) => this.handleSubmit(e) } method="post">
                     <div>
 						<input  name="name"
-								onChange={e=>{ this.setState({name: e.target.value }) } }  
-                                value={store.name}   
+								onChange={e => { this.changeStoreState('name', e.target.value) }}  
                                 type="text"  placeholder="name" />
                     </div>
 			
-
 					<textarea name="description"
-							  onChange={e=>{ this.setState({description: e.target.value }) } }  
-                              value={store.description} 
-                              placeholder="description"></textarea>
-
+							  onChange={e=>{ this.changeStoreState('description', e.target.value) } }  
+							  value={store.description} 
+							  placeholder="description">
+					</textarea>
+			
 					<div>
 						<input  name="address"
-								onChange={e=>{ this.setState({address: e.target.value }) } }  
+								onChange={e=>{ this.changeStoreState('location[address]', e.target.value) } }  
 								value={store.location.address}   
 								type="text"  placeholder="address" />
 					</div>
-					
+			
 					<div>
 							<input  name="longitude"
 									onChange={e=>{ this.setState({longitude: e.target.value }) } }  
@@ -132,6 +105,39 @@ class AddStore extends Component {
 									onChange={e=>{ this.setState({latitude: e.target.value }) } }  
 									value={store.location.latitude}   
 									type="text"  placeholder="latitude" />
+					</div>
+			
+
+					<div>
+						<input  name="featuredImg"
+								onChange={e=>{ this.setState({featuredImg: e.target.value }) } }  
+								value={store.featuredImg}   
+								type="text"  placeholder="featuredImg" />
+					</div>
+
+					<div>
+						<input  name="coverImgLink"
+								onChange={e=>{ this.setState({coverImgLink: e.target.value }) } }  
+								value={store.coverImgLink}   
+								type="text"  placeholder="coverImgLink" />
+					</div>
+
+
+					<div>
+						hasDelivery
+						<input type="checkbox" checked={store.hasDelivery} />
+					</div>
+					
+					<div>
+					<input  name="longitude"
+							onChange={e=>{ this.setState({longitude: e.target.value }) } }  
+							value={store.location.longitude}   
+							type="text"  placeholder="longitude" />
+
+					<input  name="latitude"
+							onChange={e=>{ this.setState({latitude: e.target.value }) } }  
+							value={store.location.latitude}   
+							type="text"  placeholder="latitude" />
 					</div>
 			
 
