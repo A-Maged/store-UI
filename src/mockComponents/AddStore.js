@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
-const axios = require('axios');
 
+const axios = require('axios');
+const _ = require('lodash');
 
 
 class AddStore extends Component {
@@ -14,16 +15,15 @@ class AddStore extends Component {
 				name: 			'',
 				description: 	'',
 				location: {
-					address :	'fix me',
-					longitude: 	0,
-					latitude: 	0
+					address :	'',
+					longitude: 	'',
+					latitude: 	''
 				},
 				featuredImg:	'',
 				coverImgLink: 	'',
 				catagories: 	['sssss'],
 				hasDelivery: 	false,
 				deliveryCities: [],
-			
 				items:[]
 			}
 			
@@ -59,13 +59,15 @@ class AddStore extends Component {
 
 
 
-	changeStoreState(property, value){
+	changeStoreState( propertyPath, value){
 		var tempStore = Object.assign( {}, this.state.store);
 
-		tempStore[property] = value;
-
+		_.set(tempStore, propertyPath, value);
+		
 		this.setState({ store: tempStore });
 	}
+
+
 
     render() {
         var store = this.state.store;
@@ -89,15 +91,21 @@ class AddStore extends Component {
 			
 					<div>
 						<input  name="address"
+								onChange={e=>{ this.changeStoreState('location.address', e.target.value) } }  
+								value={store.location.address} 
 								type="text"  placeholder="address" />
 					</div>
 			
 					<div>
 							<input  name="longitude"
-									type="text"  placeholder="longitude" />
+									onChange={e=>{ this.changeStoreState('location.longitude', e.target.value) } }  
+									value={store.location.longitude} 
+									type="number"  placeholder="longitude" />
 
 							<input  name="latitude"
-									type="text"  placeholder="latitude" />
+									onChange={e=>{ this.changeStoreState('location.latitude', e.target.value) } }  
+									value={store.location.latitude} 
+									type="number"  placeholder="latitude" />
 					</div>
 			
 
@@ -118,7 +126,8 @@ class AddStore extends Component {
 
 					<div>
 						hasDelivery
-						<input type="checkbox" checked={store.hasDelivery} />
+						<input  type="checkbox" 
+								onChange={(e)=>{ this.changeStoreState('hasDelivery', e.target.checked)}} />
 					</div>
 					
 					
