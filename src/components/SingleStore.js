@@ -52,6 +52,7 @@ class SingleStore extends Component {
 		}
 
 		*/
+	
 		// this bindings
 		this.renderCatagories = this.renderCatagories.bind(this);
 		this.renderdeliveryCities = this.renderdeliveryCities.bind(this);
