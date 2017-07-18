@@ -1,68 +1,51 @@
-import React from 'react'
+import React from 'react';
 import { Component } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  Redirect
-} from 'react-router-dom'
-
-
-
-import Stores from './components/Stores/index.js'
-import SingleStore from './components/Stores/SingleStore.js'
-import AddStore from './components/Stores/AddStore.js'
-import Test from './components/Stores/Test.js'
-
+import Stores from './components/Stores';
+import SingleStore from './components/SingleStore';
+import Item from './components/Item';
+import AddStore from './components/AddStore';
 
 const NoMatch = ({ location }) => (
-  <div>
-    <h3>No match for <code>{location.pathname}</code></h3>
-  </div>
+	<h3>No match for <code>{location.pathname}</code></h3>
 )
 
-
 const CmRouter = () => (
-  <Router>
-        <div>
-            <ul>
-                <li><Link to="/">all stores</Link></li>
-                <li><Link to="/add">add new store</Link></li>
+	<Router>
+		<div>
+
+			<ul>
+				<li><Link to="/">Home</Link></li>
+				<li><Link to="/addStore">add store</Link></li>
+				<li><Link to="/omar-store/add-item">add item</Link></li>
 			</ul>
 
-            <hr/>
+			<hr/>
 
-            <Switch>
-                <Route exact path="/" component={Stores}/>
-            
-                <Route path="/singleStore/:slug" component={SingleStore}/>
-
-                <Route
-                    path="/add"
-                    render={(props) => ( <AddStore {...props} title="Add"/> ) }
-                />
-
-          
-
-                {/*
-                    a last route to catch 404
-                    <Route component={NoMatch}/>            
-                */}
-
-                {/* redirect to the store instead of a 404 */}
-                <Route component={Stores}/>
-            </Switch>
-
-        </div>
-    </Router>
+			<Switch>
+				<Route exact path="/" component={Stores}/>
+				
+				<Route path="/addStore" component={AddStore}/>
+			
+				<Route path="/:storeslug/add-item" component={AddStore}/>
+				
+				<Route path="/singleStore/:storeslug/:itemId" component={Item}/>
+			
+				<Route path="/singleStore/:storeslug" component={SingleStore}/>
+		
+				<Route component={NoMatch}/>            
+	
+				</Switch>
+			
+		</div>			
+	</Router>
 )
 
 
 
 const Root = () => (
-  <CmRouter></CmRouter>
+  <CmRouter />
 )
 
 export default Root
