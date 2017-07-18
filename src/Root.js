@@ -29,7 +29,7 @@ const CmRouter = () => (
 				
 				<Route path="/addStore" component={AddStore}/>
 			
-				<Route path="/:storeslug/add-item" component={AddStore}/>
+				<Route path="/:storeslug/add-item" component={AddItem}/>
 				
 				<Route path="/singleStore/:storeslug/:itemId" component={Item}/>
 			
