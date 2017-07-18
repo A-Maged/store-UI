@@ -7,6 +7,9 @@ class Item extends Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {}
+			
+		/*
 		this.state = {
 			id:				1,
 			storeSlug: 		'cm_grocery',
@@ -36,6 +39,7 @@ class Item extends Component {
 			]
 
 		}
+		*/
 
 		// this bindings
 		this.renderGallaryImgs = this.renderGallaryImgs.bind(this);
@@ -85,6 +89,18 @@ class Item extends Component {
 	}
 
 
+	componentDidMount(){        
+        var self = this
+        axios.get(`http://127.0.0.1:3000/api/v1/stores/show/${self.props.match.params.storeslug}/${self.props.match.params.itemId}`)
+            .then(function (response) {
+                self.setState({singleStore: response.data})
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+                
+
+	}
 	
 	render() {
 		var item = this.state;
