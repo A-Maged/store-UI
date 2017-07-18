@@ -6,6 +6,7 @@ import Stores from './components/Stores';
 import SingleStore from './components/SingleStore';
 import Item from './components/Item';
 import AddStore from './components/AddStore';
+import AddItem from './components/AddItem';
 
 const NoMatch = ({ location }) => (
 	<h3>No match for <code>{location.pathname}</code></h3>
