@@ -16201,6 +16201,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var shortid = __webpack_require__(152);
+var axios = __webpack_require__(221);
 
 var Stores = function (_Component) {
 	_inherits(Stores, _Component);
@@ -16211,32 +16212,26 @@ var Stores = function (_Component) {
 		var _this = _possibleConstructorReturn(this, (Stores.__proto__ || Object.getPrototypeOf(Stores)).call(this, props));
 
 		_this.state = {
-			stores: [{
-				name: 'cm grocery',
-				slug: 'cm_grocery',
-				location: {
-					address: '74 New York Ave, Brooklyn, NY 11216, USA',
-					longitude: 40.6776989,
-					latitude: -73.95153
-				},
-				featuredImg: 'http://static4.businessinsider.com/image/563cde04bd86effb5b8bcd49-2392-1794/rtr3er24.jpg'
-			}, {
-				name: 'TS shirts',
-				slug: 'TS_shirts',
-				location: {
-					address: '214 E 89th St, New York, NY 10128, USA',
-					longitude: 40.780343,
-					latitude: -73.9542264
-				},
-				featuredImg: 'https://imageshotfrogus.blob.core.windows.net/companies/Big-Frog-Custom-T-Shirts-in-Plantation/images/Big-Frog-Custom-T-Shirts-in-Plantation_80861_image.jpg'
-			}]
+			stores: []
 		};
 
 		_this.renderStores = _this.renderStores.bind(_this);
+		_this.getStores = _this.getStores.bind(_this);
 		return _this;
 	}
 
 	_createClass(Stores, [{
+		key: 'getStores',
+		value: function getStores() {
+			var self = this;
+
+			axios.get('http://127.0.0.1:3000/api/v1/stores').then(function (response) {
+				self.setState({ stores: response.data });
+			}).catch(function (error) {
+				console.log(error);
+			});
+		}
+	}, {
 		key: 'renderStores',
 		value: function renderStores() {
 			return this.state.stores.map(function (store) {
@@ -16264,6 +16259,12 @@ var Stores = function (_Component) {
 					)
 				);
 			});
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var self = this;
+			self.getStores();
 		}
 	}, {
 		key: 'render',

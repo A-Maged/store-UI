@@ -5,6 +5,7 @@ import { AppContainer } from 'react-hot-loader'
 // import Root from './Root'
 import Root from './components/Root'
 
+
 require('./sass/style.sass')
 
 const render = Component => {
