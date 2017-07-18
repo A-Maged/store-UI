@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 
 const shortid = require('shortid');
+const axios = require('axios');
+
 
 class SingleStore extends Component {
 	constructor(props){
 		super(props);
-		
+		this.state = {
+			singleStore:{}
+		}
+			
+		/*	
 		this.state = {
 			id: 			1,
 			name: 			'cm grocery',
@@ -45,6 +51,7 @@ class SingleStore extends Component {
 			]
 		}
 
+		*/
 		// this bindings
 		this.renderCatagories = this.renderCatagories.bind(this);
 		this.renderdeliveryCities = this.renderdeliveryCities.bind(this);
@@ -53,28 +60,34 @@ class SingleStore extends Component {
 	}
 
 
+	
+	
 	renderCatagories(){
-		return(
-			<ul className="catagories-list">
-				{			
-					this.state.catagories.map(function(catagory) {
-						return(
-							<li key={shortid.generate()}>
-								{catagory}
-							</li>					
-						)
-					})
-				}
-			</ul>	
-		)
+
+		if (this.state.singleStore.catagories) {
+				
+			return(
+				<ul className="catagories-list">
+					{			
+						this.state.singleStore.catagories.map(function(catagory) {
+							return(
+								<li key={shortid.generate()}>
+									{catagory}
+								</li>					
+							)
+						})
+					}
+				</ul>	
+			)
+		}	
 	}
 
 	renderdeliveryCities(){
-		if (this.state.hasDelivery == true) {
+		if (this.state.singleStore.hasDelivery == true) {
 			return(
 				<ul className="dlivery-cities-list">
 					{
-						this.state.deliveryCities.map(function(city) {
+						this.state.singleStore.deliveryCities.map(function(city) {
 							return(
 								<li key={shortid.generate()}>
 									{city}
@@ -91,32 +104,34 @@ class SingleStore extends Component {
 
 	renderItems(){
 		var self = this;
+		if (this.state.singleStore.items) {
+			
+			return(
+				<ul className="items-list">
+				{
+					this.state.singleStore.items.map(function(item) {
+						return(
+							<div key={shortid.generate()} className="item">
+			
+							<Link to={`/singleStore/${self.props.match.params.storeslug}/${item.id}`}>
+								<img className="featured-img" src={item.featuredImg} alt=""/>
+							</Link>
+								
+								<p className="name">
+									<Link to={`/singleStore/${self.props.match.params.storeslug}/${item.id}`}>
+										{item.name}							
+									</Link>
+								</p>
 
-		return(
-			<ul className="items-list">
-			{
-				this.state.items.map(function(item) {
-					return(
-						<div key={shortid.generate()} className="item">
-		
-						<Link to={`/singleStore/${self.props.match.params.storeslug}/${item.id}`}>
-							<img className="featured-img" src={item.featuredImg} alt=""/>
-						</Link>
-							
-							<p className="name">
-								<Link to={`/singleStore/${self.props.match.params.storeslug}/${item.id}`}>
-									{item.name}							
-								</Link>
-							</p>
-
-							<p className="price">{item.price}</p>
-							<button onClick={event => self.handleOrder(event) }>add to cart</button>						
-						</div>
-					)
-				})
-			}
-			</ul>
-		);
+								<p className="price">{item.price}</p>
+								<button onClick={event => self.handleOrder(event) }>add to cart</button>						
+							</div>
+						)
+					})
+				}
+				</ul>
+			);
+		}
 	}
 
 
@@ -125,19 +140,34 @@ class SingleStore extends Component {
 	}
 
 
+	componentDidMount(){        
+        var self = this
+        axios.get(`http://127.0.0.1:3000/api/v1/stores/show/${self.props.match.params.storeslug}`)
+            .then(function (response) {
+                self.setState({singleStore: response.data})
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+                
+
+	}
+
 
 	render() {
-		var store = this.state;
-
+		var store = this.state.singleStore;
+		
+		
 		return (
 			<div className="single-store">
-				<img className="cover-img" src={store.coverImgLink} alt=""/>
+			
+			<img className="cover-img" src={store.coverImgLink} alt=""/>
 
 				<h2 className="name">{store.name}</h2>
 
 				<p className="description">{store.description}</p>
 
-				<p className="address">{store.location.address}</p>
+				<p className="address">{store.location.address}</p>				
 
 				{this.renderCatagories()}
 
@@ -147,6 +177,7 @@ class SingleStore extends Component {
 
 				{this.renderItems()}
 
+				
 			</div>
 		);
 	}

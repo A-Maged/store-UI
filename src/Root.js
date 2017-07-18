@@ -40,11 +40,6 @@ const CmRouter = () => (
                 <Route path="/singleStore/:slug" component={SingleStore}/>
 
                 <Route
-                    path="/update/:slug"
-                    render={(props) => ( <AddStore {...props} title="Edit"/> ) }
-                />
-
-                <Route
                     path="/add"
                     render={(props) => ( <AddStore {...props} title="Add"/> ) }
                 />
