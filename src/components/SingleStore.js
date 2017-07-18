@@ -113,12 +113,12 @@ class SingleStore extends Component {
 						return(
 							<div key={shortid.generate()} className="item">
 			
-							<Link to={`/singleStore/${self.props.match.params.storeslug}/${item.id}`}>
+							<Link to={`/singleStore/${self.props.match.params.storeslug}/${item._id}`}>
 								<img className="featured-img" src={item.featuredImg} alt=""/>
 							</Link>
 								
 								<p className="name">
-									<Link to={`/singleStore/${self.props.match.params.storeslug}/${item.id}`}>
+									<Link to={`/singleStore/${self.props.match.params.storeslug}/${item._id}`}>
 										{item.name}							
 									</Link>
 								</p>
@@ -173,6 +173,7 @@ class SingleStore extends Component {
 		
 		return (
 			<div className="single-store">
+				<Link to={`/${this.props.match.params.storeslug}/add-item`}>add item</Link>
 			
 				<img className="cover-img" src={store.coverImgLink} alt=""/>
 

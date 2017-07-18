@@ -75,11 +75,12 @@ class AddStore extends Component {
 		return (
             <div>
 				<h2>add a store</h2>
-				{console.log(store)}
+			
 				<form onSubmit={ (e) => this.handleSubmit(e) } method="post">
                     <div>
 						<input  name="name"
 								onChange={e => { this.changeStoreState('name', e.target.value) }}  
+								value={store.name} 
                                 type="text"  placeholder="name" />
                     </div>
 			

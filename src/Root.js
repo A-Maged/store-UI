@@ -19,7 +19,6 @@ const CmRouter = () => (
 			<ul>
 				<li><Link to="/">Home</Link></li>
 				<li><Link to="/addStore">add store</Link></li>
-				<li><Link to="/omar-store/add-item">add item</Link></li>
 			</ul>
 
 			<hr/>
