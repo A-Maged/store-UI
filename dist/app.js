@@ -16050,6 +16050,7 @@ var SingleStore = function (_Component) {
 		_this.renderCatagories = _this.renderCatagories.bind(_this);
 		_this.renderdeliveryCities = _this.renderdeliveryCities.bind(_this);
 		_this.renderItems = _this.renderItems.bind(_this);
+		_this.renderLocation = _this.renderLocation.bind(_this);
 		_this.handleOrder = _this.handleOrder.bind(_this);
 		return _this;
 	}
@@ -16135,6 +16136,35 @@ var SingleStore = function (_Component) {
 			}
 		}
 	}, {
+		key: 'renderLocation',
+		value: function renderLocation() {
+			var self = this;
+			if (self.state.singleStore.location) {
+				return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'div',
+					null,
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'p',
+						null,
+						'address:  ',
+						self.state.singleStore.location.address
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'p',
+						null,
+						'longitude:  ',
+						self.state.singleStore.location.longitude
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'p',
+						null,
+						'latitude:  ',
+						self.state.singleStore.location.latitude
+					)
+				);
+			}
+		}
+	}, {
 		key: 'handleOrder',
 		value: function handleOrder(event) {
 			console.log('handleOrder called');
@@ -16168,11 +16198,7 @@ var SingleStore = function (_Component) {
 					{ className: 'description' },
 					store.description
 				),
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					'p',
-					{ className: 'address' },
-					store.location.address
-				),
+				this.renderLocation(),
 				this.renderCatagories(),
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'p',

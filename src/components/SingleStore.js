@@ -56,12 +56,13 @@ class SingleStore extends Component {
 		this.renderCatagories = this.renderCatagories.bind(this);
 		this.renderdeliveryCities = this.renderdeliveryCities.bind(this);
 		this.renderItems = this.renderItems.bind(this);
+		this.renderLocation = this.renderLocation.bind(this);
 		this.handleOrder = this.handleOrder.bind(this);		
 	}
 
 
 	
-	
+
 	renderCatagories(){
 
 		if (this.state.singleStore.catagories) {
@@ -100,8 +101,6 @@ class SingleStore extends Component {
 		}
 	}
 
-
-
 	renderItems(){
 		var self = this;
 		if (this.state.singleStore.items) {
@@ -135,6 +134,19 @@ class SingleStore extends Component {
 	}
 
 
+	renderLocation(){
+		var self = this;
+		if(self.state.singleStore.location){
+			return(
+				<div>
+					<p>address:  {self.state.singleStore.location.address}</p>
+					<p>longitude:  {self.state.singleStore.location.longitude}</p>
+					<p>latitude:  {self.state.singleStore.location.latitude}</p>
+				</div>
+			)
+		}
+	}
+
 	handleOrder(event){
 		console.log('handleOrder called')
 	}
@@ -161,13 +173,13 @@ class SingleStore extends Component {
 		return (
 			<div className="single-store">
 			
-			<img className="cover-img" src={store.coverImgLink} alt=""/>
+				<img className="cover-img" src={store.coverImgLink} alt=""/>
 
 				<h2 className="name">{store.name}</h2>
 
 				<p className="description">{store.description}</p>
 
-				<p className="address">{store.location.address}</p>				
+				{this.renderLocation()}
 
 				{this.renderCatagories()}
 
