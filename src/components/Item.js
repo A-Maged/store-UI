@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const shortid = require('shortid');
-
+const axios = require('axios');
 
 class Item extends Component {
 	constructor(props) {
@@ -50,36 +50,40 @@ class Item extends Component {
 
 
 	renderGallaryImgs(){
-		return(
-			<div className="gallary">
-				{this.state.galleryImgs.map(function(imgLink) {
-					return(
-						<img key={shortid.generate()} src={imgLink} alt=""/>
-					)
-				})}
-			</div>
-		)
+		if (this.state.galleryImgs) {			
+			return(
+				<div className="gallary">
+					{this.state.galleryImgs.map(function(imgLink) {
+						return(
+							<img key={shortid.generate()} src={imgLink} alt=""/>
+						)
+					})}
+				</div>
+			)
+		}		
 	}
 
 
 
 	renderReviews(){
-		return(
-			<div className="reviews-list">
-				{this.state.reviews.map(function(review) {
-					return(
-						<div key={shortid.generate()}  className="review">
-							<strong className="username">
-								username:   {review.username}
-							</strong>
+		if (this.state.reviews) {						
+			return(
+				<div className="reviews-list">
+					{this.state.reviews.map(function(review) {
+						return(
+							<div key={shortid.generate()}  className="review">
+								<strong className="username">
+									username:   {review.username}
+								</strong>
 
-							<p className="data">review:   {review.data}</p>
-							<p className="stars">stars:   {review.stars}</p>					
-						</div>
-					)
-				})}
-			</div>
-		)
+								<p className="data">review:   {review.data}</p>
+								<p className="stars">stars:   {review.stars}</p>					
+							</div>
+						)
+					})}
+				</div>
+			)
+		}
 	}
 
 
@@ -93,7 +97,7 @@ class Item extends Component {
         var self = this
         axios.get(`http://127.0.0.1:3000/api/v1/stores/show/${self.props.match.params.storeslug}/${self.props.match.params.itemId}`)
             .then(function (response) {
-                self.setState({singleStore: response.data})
+                self.setState(response.data)
             })
             .catch(function (error) {
                 console.log(error);

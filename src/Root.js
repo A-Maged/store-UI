@@ -24,20 +24,26 @@ const CmRouter = () => (
 			<hr/>
 
 			<Switch>
+
+				{/* homePage , show all stores */}				
 				<Route exact path="/" component={Stores}/>
 				
+				{/* add new store */}				
 				<Route path="/addStore" component={AddStore}/>
 			
+				{/* add new item */}
 				<Route path="/:storeslug/add-item" component={AddItem}/>
-				
+			
+				{/* show single item */}				
 				<Route path="/singleStore/:storeslug/:itemId" component={Item}/>
 			
+				{/* show single store*/}				
 				<Route path="/singleStore/:storeslug" component={SingleStore}/>
 		
+				{/* 404 */}				
 				<Route component={NoMatch}/>            
 	
-				</Switch>
-			
+			</Switch>
 		</div>			
 	</Router>
 )
