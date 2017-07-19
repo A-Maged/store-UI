@@ -153,7 +153,7 @@ class SingleStore extends Component {
 	}
 
 
-	componentDidMount(){        
+	componentDidMount(){
         var self = this
         axios.get(`http://127.0.0.1:3000/api/v1/stores/show/${self.props.match.params.storeslug}`)
             .then(function (response) {
@@ -173,11 +173,13 @@ class SingleStore extends Component {
 		
 		return (
 			<div className="single-store">
-				<Link to={`/${this.props.match.params.storeslug}/add-item`}>add item</Link>
 			
 				<img className="cover-img" src={store.coverImgLink} alt=""/>
 
 				<h2 className="name">{store.name}</h2>
+
+				<Link 	className="btn btn-success"
+						to={`/${this.props.match.params.storeslug}/add-item`}>add item</Link>
 
 				<p className="description">{store.description}</p>
 

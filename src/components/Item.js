@@ -118,7 +118,8 @@ class Item extends Component {
 				{this.renderGallaryImgs()}	
 				{this.renderReviews()}	
 
-				<button onClick={event => this.handleOrder(event)}>BUY/RESERVE</button>
+				<button className="btn btn-success"
+						onClick={event => this.handleOrder(event)}>BUY/RESERVE</button>
 			</div>
 		);
 	}

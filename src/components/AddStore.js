@@ -73,66 +73,69 @@ class AddStore extends Component {
         var store = this.state.store;
 
 		return (
-            <div>
+            <div className="add_store-container">
 				<h2>add a store</h2>
 			
 				<form onSubmit={ (e) => this.handleSubmit(e) } method="post">
-                    <div>
-						<input  name="name"
+                    <div class="input-group">
+						<input  name="name" className="form-control"
 								onChange={e => { this.changeStoreState('name', e.target.value) }}  
 								value={store.name} 
                                 type="text"  placeholder="name" />
                     </div>
-			
-					<textarea name="description"
-							  onChange={e=>{ this.changeStoreState('description', e.target.value) } }  
-							  value={store.description} 
-							  placeholder="description">
-					</textarea>
-			
-					<div>
-						<input  name="address"
+
+					
+					<div class="input-group">					
+						<textarea name="description" className="form-control"
+								onChange={e=>{ this.changeStoreState('description', e.target.value) } }  
+								value={store.description} 
+								placeholder="description">
+						</textarea>
+					</div>	
+					
+					
+					<div class="input-group">					
+						<input  name="address" className="form-control"
 								onChange={e=>{ this.changeStoreState('location.address', e.target.value) } }  
 								value={store.location.address} 
 								type="text"  placeholder="address" />
 					</div>
 			
-					<div>
-							<input  name="longitude"
+					<div class="input-group">					
+						<input  name="longitude" className="form-control"
 									onChange={e=>{ this.changeStoreState('location.longitude', e.target.value) } }  
 									value={store.location.longitude} 
 									type="number"  placeholder="longitude" />
 
-							<input  name="latitude"
+							<input  name="latitude" className="form-control"
 									onChange={e=>{ this.changeStoreState('location.latitude', e.target.value) } }  
 									value={store.location.latitude} 
 									type="number"  placeholder="latitude" />
 					</div>
 			
 
-					<div>
-						<input  name="featuredImg"
+					<div class="input-group">					
+						<input  name="featuredImg" className="form-control"
 								onChange={e=>{ this.changeStoreState('featuredImg', e.target.value) } }  
 								value={store.featuredImg}   
 								type="text"  placeholder="featuredImg" />
 					</div>
 
-					<div>
-						<input  name="coverImgLink"
+					<div class="input-group">					
+						<input  name="coverImgLink" className="form-control"
 								onChange={e=>{ this.changeStoreState('coverImgLink', e.target.value) } }  
 								value={store.coverImgLink}   
 								type="text"  placeholder="coverImgLink" />
 					</div>
 
 
-					<div>
-						hasDelivery
-						<input  type="checkbox" 
+					<div class="input-group">					
+						<input  type="checkbox"
 								onChange={(e)=>{ this.changeStoreState('hasDelivery', e.target.checked)}} />
+						hasDelivery
 					</div>
-					
-					
-					<button>add</button>
+									  
+				 	<button>add</button>
                 </form>
 
 

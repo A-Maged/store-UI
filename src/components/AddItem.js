@@ -13,7 +13,7 @@ class AddItem extends Component {
             fireRedirect: false,
 			
 			item:{
-				name: 			'a',
+				name: 			'',
 				description: 	'',
 				price : 		'',
 				featuredImg :	'',
@@ -60,38 +60,38 @@ class AddItem extends Component {
 	render() {
 		var item = this.state.item
 		return (
-			<div>
-				<h2>add item</h2>
+			<div className="add_item-container">
+				<h2>add an item</h2>
 
 				<form onSubmit={ (e) => this.handleSubmit(e) } method="post">
-					
-					<input  type="text" name="name" placeholder="name"
-							onChange={e => { this.changeItemState('name', e.target.value) }}  
-							value={item.name}
-					/>
+					<div class="input-group">			
+						<input  type="text" name="name" className="form-control" placeholder="name"
+								onChange={e => { this.changeItemState('name', e.target.value) }}  
+								value={item.name}/>
+					</div>
 
-					<input  type="text" name="description" placeholder="description"
+					<input className="form-control" type="text" name="description" placeholder="description"
 							onChange={e => { this.changeItemState('description', e.target.value) }}  
 							value={item.description}
 					/>
 
-					<input  type="text" name="price" placeholder="price"
+					<input  className="form-control" type="text" name="price" placeholder="price"
 							onChange={e => { this.changeItemState('price', e.target.value) }}  
 							value={item.price}
 					/>
 
-					<input  type="text" name="featuredImg" placeholder="featuredImg"
+					<input className="form-control" type="text" name="featuredImg" placeholder="featuredImg"
 							onChange={e => { this.changeItemState('featuredImg', e.target.value) }}  
 							value={item.featuredImg}
 					/>
 	{/* 
-					<input  type="text" name="galleryImgs" placeholder="galleryImgs"
+					<input className="form-control" type="text" name="galleryImgs" placeholder="galleryImgs"
 							onChange={e => { this.changeItemState('galleryImgs', e.target.value) }}  
 							value={item.galleryImgs}
 					/>
 	*/}
 
-					<input  type="text" name="catagory" placeholder="catagory"
+					<input  className="form-control" type="text" name="catagory" placeholder="catagory"
 							onChange={e => { this.changeItemState('catagory', e.target.value) }}  
 							value={item.catagory}
 					/>
