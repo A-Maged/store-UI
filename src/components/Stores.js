@@ -63,7 +63,7 @@ class Stores extends Component {
 		return(
 			this.state.stores.map(function(store) {
 				return(
-					<div key={shortid.generate()} className="store">
+					<div key={shortid.generate()} className="store thumbnail col-xs-11 col-sm-5 col-md-3">						
 						<Link to={`/singleStore/${store.slug}`}>
 							<img className="featured-img" src={store.featuredImg} alt=""/>
 						</Link>
@@ -87,8 +87,10 @@ class Stores extends Component {
 
 	render() {
 		return (
-			<div className="stores-list">
-				{this.renderStores()}
+			<div className="stores-list  container">
+				<div class="row">
+					{this.renderStores()}
+				</div>
 			</div>
 		);
 	}
