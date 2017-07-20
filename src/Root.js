@@ -3,7 +3,6 @@ import { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import Nav from './components/Nav';
-import Loading from './components/Loading';
 import Stores from './components/Stores';
 import SingleStore from './components/SingleStore';
 import Item from './components/Item';
@@ -17,7 +16,6 @@ const NoMatch = ({ location }) => (
 const CmRouter = () => (
 	<Router>
 		<div>
-			<Loading />
 			<Nav />
 
 			<Switch>

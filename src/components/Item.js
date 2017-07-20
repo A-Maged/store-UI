@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Loading from './Loading'
 const shortid = require('shortid');
 const axios = require('axios');
 
@@ -7,7 +8,9 @@ class Item extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {}
+		this.state = {
+			isFetching: true						
+		}
 			
 		/*
 		this.state = {
@@ -98,6 +101,7 @@ class Item extends Component {
         axios.get(`http://127.0.0.1:3000/api/v1/stores/show/${self.props.match.params.storeslug}/${self.props.match.params.itemId}`)
             .then(function (response) {
                 self.setState(response.data)
+				self.setState({isFetching: false})
             })
             .catch(function (error) {
                 console.log(error);
@@ -111,6 +115,7 @@ class Item extends Component {
 
 		return (
 			<div className="item">
+				{(this.state.isFetching  && (<Loading />) )}
 				<h2>name:  {item.name}</h2>
 				<img src={item.featuredImg} alt=""/>
 				<p>description:  {item.description}</p>				

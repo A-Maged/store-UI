@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 
+import Loading from './Loading';
+
 const shortid = require('shortid');
 const axios = require('axios');
 
@@ -9,7 +11,8 @@ class SingleStore extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			singleStore:{}
+			singleStore:{},
+			isFetching: true			
 		}
 			
 		/*	
@@ -158,7 +161,8 @@ class SingleStore extends Component {
         axios.get(`http://127.0.0.1:3000/api/v1/stores/show/${self.props.match.params.storeslug}`)
             .then(function (response) {
                 self.setState({singleStore: response.data})
-            })
+				self.setState({isFetching: false})
+			})
             .catch(function (error) {
                 console.log(error);
             });
@@ -173,6 +177,7 @@ class SingleStore extends Component {
 		
 		return (
 			<div className="single-store">
+				{(this.state.isFetching  && (<Loading />) )}
 			
 				<img className="cover-img" src={store.coverImgLink} alt=""/>
 

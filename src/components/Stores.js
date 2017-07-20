@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 
+import Loading from './Loading';
+
 const shortid = require('shortid');
 const axios = require('axios');
 
@@ -28,7 +30,6 @@ class Stores extends Component {
 			.then(function (response) {
 				self.setState({stores: response.data})
 				self.setState({isFetching: false})
-
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -69,6 +70,8 @@ class Stores extends Component {
 	render() {
 		return (
 			<div className="stores-list  container">
+				{(this.state.isFetching  && (<Loading />) )}
+
 				<div className="row ">
 					{this.renderStores()}
 				</div>
