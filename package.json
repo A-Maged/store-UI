@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node node-server.js",
-    "dev": "webpack-dev-server --hot --history-api-fallback --open",
+    "dev": "webpack-dev-server --content-base ./dist --hot --history-api-fallback --open",
     "watch-server": "supervisor ./node-server.js",
     "watch-assets": "webpack --watch"
   },

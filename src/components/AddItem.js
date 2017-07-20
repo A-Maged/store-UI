@@ -64,7 +64,7 @@ class AddItem extends Component {
 				<h2>add an item</h2>
 
 				<form onSubmit={ (e) => this.handleSubmit(e) } method="post">
-					<div class="input-group">			
+					<div className="input-group">			
 						<input  type="text" name="name" className="form-control" placeholder="name"
 								onChange={e => { this.changeItemState('name', e.target.value) }}  
 								value={item.name}/>

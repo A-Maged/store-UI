@@ -77,7 +77,7 @@ class AddStore extends Component {
 				<h2>add a store</h2>
 			
 				<form onSubmit={ (e) => this.handleSubmit(e) } method="post">
-                    <div class="input-group">
+                    <div className="input-group">
 						<input  name="name" className="form-control"
 								onChange={e => { this.changeStoreState('name', e.target.value) }}  
 								value={store.name} 
@@ -85,7 +85,7 @@ class AddStore extends Component {
                     </div>
 
 					
-					<div class="input-group">					
+					<div className="input-group">					
 						<textarea name="description" className="form-control"
 								onChange={e=>{ this.changeStoreState('description', e.target.value) } }  
 								value={store.description} 
@@ -94,14 +94,14 @@ class AddStore extends Component {
 					</div>	
 					
 					
-					<div class="input-group">					
+					<div className="input-group">					
 						<input  name="address" className="form-control"
 								onChange={e=>{ this.changeStoreState('location.address', e.target.value) } }  
 								value={store.location.address} 
 								type="text"  placeholder="address" />
 					</div>
 			
-					<div class="input-group">					
+					<div className="input-group">					
 						<input  name="longitude" className="form-control"
 									onChange={e=>{ this.changeStoreState('location.longitude', e.target.value) } }  
 									value={store.location.longitude} 
@@ -114,14 +114,14 @@ class AddStore extends Component {
 					</div>
 			
 
-					<div class="input-group">					
+					<div className="input-group">					
 						<input  name="featuredImg" className="form-control"
 								onChange={e=>{ this.changeStoreState('featuredImg', e.target.value) } }  
 								value={store.featuredImg}   
 								type="text"  placeholder="featuredImg" />
 					</div>
 
-					<div class="input-group">					
+					<div className="input-group">					
 						<input  name="coverImgLink" className="form-control"
 								onChange={e=>{ this.changeStoreState('coverImgLink', e.target.value) } }  
 								value={store.coverImgLink}   
@@ -129,7 +129,7 @@ class AddStore extends Component {
 					</div>
 
 
-					<div class="input-group">					
+					<div className="input-group">					
 						<input  type="checkbox"
 								onChange={(e)=>{ this.changeStoreState('hasDelivery', e.target.checked)}} />
 						hasDelivery

@@ -14,6 +14,11 @@ server.on('request', (req, res)=>{
             res.end(fs.readFileSync('./dist/app.js'));
             break;
 	   
+		case '/images/loading.gif':
+            res.writeHead(200, {'Content-Type': 'image/gif'});
+            res.end(fs.readFileSync('./dist/images/loading.gif'));
+            break;
+
 		default:
 			res.writeHead(200, {'Content-Type': 'text/html'});
 			res.end(fs.readFileSync('./dist/index.html'));

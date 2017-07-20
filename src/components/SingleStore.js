@@ -111,20 +111,20 @@ class SingleStore extends Component {
 				{
 					this.state.singleStore.items.map(function(item) {
 						return(
-							<div key={shortid.generate()} className="item">
+							<div key={shortid.generate()} className="item thumbnail col-xs-11 col-sm-5 col-md-3">
 			
-							<Link to={`/singleStore/${self.props.match.params.storeslug}/${item._id}`}>
-								<img className="featured-img" src={item.featuredImg} alt=""/>
-							</Link>
-								
+								<Link to={`/singleStore/${self.props.match.params.storeslug}/${item._id}`}>
+									<img className="featured-img" src={item.featuredImg} alt=""/>
+								</Link>
+									
 								<p className="name">
 									<Link to={`/singleStore/${self.props.match.params.storeslug}/${item._id}`}>
 										{item.name}							
 									</Link>
 								</p>
 
-								<p className="price">{item.price}</p>
-								<button onClick={event => self.handleOrder(event) }>add to cart</button>						
+								<span className="price">{item.price}</span>
+								<button className="quick-order-btn" onClick={event => self.handleOrder(event) }>add to cart</button>						
 							</div>
 						)
 					})
